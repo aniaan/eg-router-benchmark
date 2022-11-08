@@ -24,7 +24,9 @@ egctl object create -f eg-router-benchmark/static/mock-pipe.yaml
 The performance of `ordered-v1` and `ordered-v2` is basically the same, and the performance of `radixtree` is much better than them.
 
 static: `radixtree` is about 3 times the performance of `ordered`
+
 prefix: `radixtree` is about 3 times the performance of `ordered`
+
 regexp: `radixtree` is about 40 times the performance of `ordered`
 
 ## static
