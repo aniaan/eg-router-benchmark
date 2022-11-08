@@ -1,5 +1,3 @@
-# benchmark
-
 ## static
 
 vm1 static 2.6w/tps
@@ -81,6 +79,42 @@ http://vm-3:10080/a35fe7f7fe8217b4369a0af4244d1fca/abc
 ./hey -n 90000 -c 120 -m GET http://vm-3:10080/a35fe7f7fe8217b4369a0af4244d1fca/suffix
 > 65060.4261
 
+
 ## regexp
 
+vm1 regexp 1700/tps
+http://vm-1:10080/users/aniaan/5000
 
+./hey -n 900 -c 50 -m GET http://vm-1:10080/users/aniaan/5000
+> 1769.1021
+
+./hey -n 90000 -c 100 -m GET http://vm-1:10080/users/aniaan/5000
+> 1743.7057
+
+./hey -n 90000 -c 120 -m GET http://vm-1:10080/users/aniaan/5000
+> 1743.2940
+
+
+vm2 regexp 1700/tps
+http://vm-2:10080/users/aniaan/5000
+
+./hey -n 900 -c 50 -m GET http://vm-2:10080/users/aniaan/5000
+> 1733.3634
+
+./hey -n 90000 -c 100 -m GET http://vm-2:10080/users/aniaan/5000
+> 1707.0785
+
+./hey -n 90000 -c 120 -m GET http://vm-2:10080/users/aniaan/5000
+> 1686.6228
+
+vm3 regexp 6w/tps
+http://vm-3:10080/users/aniaan/5000
+
+./hey -n 900 -c 50 -m GET http://vm-3:10080/users/aniaan/5000
+> 38619.2734
+
+./hey -n 90000 -c 100 -m GET http://vm-3:10080/users/aniaan/5000
+> 66155.8978
+
+./hey -n 90000 -c 120 -m GET http://vm-3:10080/users/aniaan/5000
+> 66357.7316
