@@ -1,0 +1,11 @@
+name: mock
+kind: Pipeline
+flow:
+- filter: mock
+
+filters:
+- name: mock
+  kind: Mock
+  rules:
+  - body: "You can buy the laptop for $1 now.\n"
+    code: 200

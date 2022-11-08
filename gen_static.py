@@ -16,7 +16,7 @@ def gen_ordered_router_rules(count: int = 10000):
     paths = []
     for i in range(1, count + 1):
         path = "/" + hashlib.md5(f"{i}".encode("utf-8")).hexdigest()
-        paths.append({"path": path, "backend": path, "methods": ["GET"]})
+        paths.append({"path": path, "backend": "mock", "methods": ["GET"]})
 
     config["rules"] = [{"paths": paths}]
 
@@ -38,7 +38,7 @@ def gen_radix_tree_router_rules(count: int = 10000):
     paths = []
     for i in range(1, count + 1):
         path = "/" + hashlib.md5(f"{i}".encode("utf-8")).hexdigest()
-        paths.append({"path": path, "backend": path, "methods": ["GET"]})
+        paths.append({"path": path, "backend": "mock", "methods": ["GET"]})
 
     config["rules"] = [{"paths": paths}]
 
@@ -47,6 +47,7 @@ def gen_radix_tree_router_rules(count: int = 10000):
         yaml.dump(config, out)
 
 
+# 5000: a35fe7f7fe8217b4369a0af4244d1fca
 if __name__ == "__main__":
     gen_ordered_router_rules()
     gen_radix_tree_router_rules()
