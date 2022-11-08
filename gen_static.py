@@ -1,10 +1,52 @@
-def gen_order_router_v1_rules(isV2: bool = False):
-    pass
+import hashlib
+import json
+from ruamel.yaml import YAML
 
 
-def gen_art_router_rules():
-    pass
+def gen_ordered_router_rules(count: int = 10000):
+
+    config = {
+        "kind": "HTTPServer",
+        "name": "server-demo",
+        "port": 10080,
+        "keepAlive": True,
+        "https": False,
+    }
+
+    paths = []
+    for i in range(1, count + 1):
+        path = "/" + hashlib.md5(f"{i}".encode("utf-8")).hexdigest()
+        paths.append({"path": path, "backend": path, "methods": ["GET"]})
+
+    config["rules"] = [{"paths": paths}]
+
+    with open("./static/order.yaml", "w") as out:
+        yaml = YAML()
+        yaml.dump(config, out)
+
+
+def gen_radix_tree_router_rules(count: int = 10000):
+    config = {
+        "kind": "HTTPServer",
+        "name": "server-demo",
+        "port": 10080,
+        "keepAlive": True,
+        "https": False,
+        "routerKind": "RadixTree",
+    }
+
+    paths = []
+    for i in range(1, count + 1):
+        path = "/" + hashlib.md5(f"{i}".encode("utf-8")).hexdigest()
+        paths.append({"path": path, "backend": path, "methods": ["GET"]})
+
+    config["rules"] = [{"paths": paths}]
+
+    with open("./static/radixtree.yaml", "w") as out:
+        yaml = YAML()
+        yaml.dump(config, out)
 
 
 if __name__ == "__main__":
-    print(1)
+    gen_ordered_router_rules()
+    gen_radix_tree_router_rules()
